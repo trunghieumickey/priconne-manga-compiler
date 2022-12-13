@@ -3,6 +3,8 @@ from PIL import Image
 
 lost = 0
 image = []
+
+print()
 while True: 
 
     if lost > 9: #the server skip page index sometime, stop if 9 page index is missing in total
