@@ -27,6 +27,9 @@ jobs:
     - name: Install Aria2
       run: sudo apt update && sudo apt install -y aria2
 
+    - name: Install Pillow
+      run: pip install Pillow
+      
     - name: Pull Pages
       run: python3 priconne-pull.py
     
