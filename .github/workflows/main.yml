@@ -1,0 +1,29 @@
+name: "Pull Latest Pages"
+
+on:
+  schedule:
+    - cron: '0 20 * * *'
+
+jobs:
+  analyze:
+    name: Pull Latest Pages
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [ 'python3' ]
+  
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install Aria2
+      run: sudo apt update && sudo apt install -y aria2
+
+    - name: Pull Pages
+      run: python3 priconne-pull.py
