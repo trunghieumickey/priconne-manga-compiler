@@ -1,4 +1,4 @@
-import requests,regex,os
+import requests,os,re
 from PIL import Image
 
 lost = 0
@@ -12,7 +12,7 @@ while True:
     if ("lost" in response.text):
         lost+=1
 
-    response = regex.search("https://assets-priconne-redive-us.akamaized.net/media/cartoon/image/.*png|$", response.text)[0]
+    response = re.search("https://assets-priconne-redive-us.akamaized.net/media/cartoon/image/.*png|$", response.text)[0]
     if (response != ""):
         image.append(response) 
 
