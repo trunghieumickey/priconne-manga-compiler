@@ -27,3 +27,11 @@ jobs:
 
     - name: Pull Pages
       run: python3 priconne-pull.py
+    
+    - name: Update Release
+      uses: pyTooling/Actions/releaser@main
+      with:
+        tag: latest
+        rm: true
+        token: ${{ secrets.GITHUB_TOKEN }}
+        files: priconne.pdf
