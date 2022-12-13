@@ -10,10 +10,7 @@ jobs:
   analyze:
     name: Pull Latest Pages
     runs-on: ubuntu-latest
-    permissions:
-      actions: read
-      contents: read
-      security-events: write
+    permissions: write-all
 
     strategy:
       fail-fast: false
