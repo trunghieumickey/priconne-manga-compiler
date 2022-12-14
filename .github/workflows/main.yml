@@ -3,7 +3,7 @@ name: "Pull Latest Pages"
 on:
   schedule:
     - cron: '0 20 * * *'
-  push:
+  push:
     branches: [ main ]
 
 jobs:
