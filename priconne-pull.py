@@ -1,12 +1,29 @@
 import requests,os,re
 from PIL import Image
 
-lost = 0
-image = []
+# disable this if you want to start from the beginning
+enable_recorver = True 
+
+try: 
+    # recorver page index to reduce hit to the server
+    # download page from akaamized is fine as cdn can handle it
+    if not enable_recorver:
+        raise Exception("Recover is disabled")
+
+    with open("LOST-PAGE.txt","r") as img:
+        lost = int(img.read())
+    
+    with open("URI-LIST.txt","r") as img:
+        image = img.read().split("\n")
+
+except:
+    lost = 0
+    image = []
 
 while True: 
 
-    if lost > 9: #the server skip page index sometime, stop if 9 page index is missing in total
+    # the server skip page index sometime, stop if 9 page index is missing in total
+    if lost > 9: 
         break
 
     response = requests.get("https://web.priconne-redive.us/cartoon/detail/"+str(len(image)+lost+1))
@@ -18,12 +35,22 @@ while True:
         image.append(response) 
 
     print("\rFound",len(image),"Pages",end="")
+    lostpoint = lost
+
 print()
 
 with open("URI-LIST.txt","w") as img:
     print(*image,file=img,sep="\n")
 
+with open("LOST-PAGE.txt","w") as img:
+    print(lostpoint,file=img)
+
 os.system("aria2c -i URI-LIST.txt -d image")
+
+#check if the image is downloaded, if not remove the link from the list
+for x in image:
+    if not os.path.isfile("image/" + x.split('/')[-1]):
+        image.remove(x)
 
 image = [Image.open("image/" + x.split('/')[-1]).convert("RGB") for x in image] 
 image[0].save("priconne.pdf", save_all=True, append_images=image[1:])

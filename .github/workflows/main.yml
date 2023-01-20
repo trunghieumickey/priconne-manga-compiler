@@ -1,10 +1,10 @@
 name: "Pull Latest Pages"
 
 on:
-#   schedule:
-#     - cron: '0 20 * * *'
-#   push:
-#     branches: [ main ]
+  schedule:
+    - cron: '0 20 * * *'
+  push:
+    branches: [ main ]
     workflow_dispatch:
 
 jobs:
@@ -27,6 +27,9 @@ jobs:
 
     - name: Install Pillow
       run: pip install Pillow
+
+    - name: Download Checkpoint
+      run: true || aria2c -d . https://github.com/trunghieumickey/priconne-manga-compiler/releases/download/latest/URI-LIST.txt https://github.com/trunghieumickey/priconne-manga-compiler/releases/download/latest/LOST-PAGE.txt
       
     - name: Pull Pages
       run: python3 priconne-pull.py
@@ -37,4 +40,8 @@ jobs:
         tag: latest
         rm: true
         token: ${{ secrets.GITHUB_TOKEN }}
-        files: priconne.pdf
+        files: |
+          priconne.pdf
+          URI-LIST.txt
+          LOST-PAGE.txt
+
