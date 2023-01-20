@@ -29,7 +29,7 @@ jobs:
       run: pip install Pillow
 
     - name: Download Checkpoint
-      run: true || aria2c -d . https://github.com/trunghieumickey/priconne-manga-compiler/releases/download/latest/URI-LIST.txt https://github.com/trunghieumickey/priconne-manga-compiler/releases/download/latest/LOST-PAGE.txt
+      run: aria2c -d . https://github.com/trunghieumickey/priconne-manga-compiler/releases/download/latest/URI-LIST.txt https://github.com/trunghieumickey/priconne-manga-compiler/releases/download/latest/LOST-PAGE.txt || true
       
     - name: Pull Pages
       run: python3 priconne-pull.py
