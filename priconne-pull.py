@@ -20,6 +20,8 @@ except:
     lost = 0
     image = []
 
+lostpoint = lost
+
 while True: 
 
     # the server skip page index sometime, stop if 9 page index is missing in total
