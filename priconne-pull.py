@@ -48,9 +48,10 @@ with open("LOST-PAGE.txt","w") as img:
 os.system("aria2c -i URI-LIST.txt -d image")
 
 #check if the image is downloaded, if not remove the link from the list
-for x in image:
-    if not os.path.isfile("image/" + x.split('/')[-1]):
-        image.remove(x)
+for i in range(len(image)):
+    if not os.path.isfile("image/"+image[i].split('/')[-1]):
+        image = image[:i]
+        break
 
 image = [Image.open("image/" + x.split('/')[-1]).convert("RGB") for x in image] 
 image[0].save("priconne.pdf", save_all=True, append_images=image[1:])
