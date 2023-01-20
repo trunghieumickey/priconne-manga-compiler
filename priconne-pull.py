@@ -32,10 +32,10 @@ while True:
 
     response = re.search("https://assets-priconne-redive-us.akamaized.net/media/cartoon/image/.*png|$", response.text)[0]
     if (response != ""):
-        image.append(response) 
+        image.append(response)
+        lostpoint = lost
 
     print("\rFound",len(image),"Pages",end="")
-    lostpoint = lost
 
 print()
 
