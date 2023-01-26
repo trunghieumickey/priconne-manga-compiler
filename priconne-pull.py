@@ -2,7 +2,7 @@ import requests,os,re
 from PIL import Image
 
 # disable this if you want to start from the beginning
-enable_recorver = False 
+enable_recorver = True 
 
 try: 
     # recorver page index to reduce hit to the server
@@ -15,6 +15,7 @@ try:
     
     with open("URI-LIST.txt","r") as img:
         image = img.read().split("\n")
+        image = image[:-1]
 
 except:
     lost = 0
