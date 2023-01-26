@@ -2,7 +2,7 @@ import requests,os,re
 from PIL import Image
 
 # disable this if you want to start from the beginning
-enable_recorver = True 
+enable_recorver = False 
 
 try: 
     # recorver page index to reduce hit to the server
