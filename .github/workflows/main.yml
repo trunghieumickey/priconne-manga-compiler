@@ -23,7 +23,7 @@ jobs:
       uses: actions/checkout@main
 
     - name: Install Dependencies
-      run: sudo apt update && sudo apt full-upgrade -y && sudo apt install -y aria2 libwebp zip
+      run: sudo apt update && sudo apt full-upgrade -y && sudo apt install -y aria2 libwebp-dev zip
 
     - name: Install Pillow
       run: pip install Pillow
